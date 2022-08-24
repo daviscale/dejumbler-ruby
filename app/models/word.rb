@@ -6,6 +6,14 @@ class Word < ApplicationRecord
     self.word = word.downcase
   end
 
+  def self.dejumble(jumbled_word)
+    if jumbled_word
+      [jumbled_word, jumbled_word]
+    else
+      []
+    end
+  end
+
   private
 
   def word_is_only_az

@@ -1,7 +1,12 @@
 <h1>Dejumble a word</h1>
-<%= form_with url: "/dejumble", method: :get do |form| %>
+<%= form_with url: "/words", method: :get do |form| %>
   <%= form.label :jumbled_word, "jumbled word:" %>
   <%= form.text_field :jumbled_word %>
   <%= form.submit "Dejumble" %>
 <% end %>
 
+<ul>
+  <% @words.each do |word| %>
+    <li><%= word %></li>
+  <% end %>
+<ul>
