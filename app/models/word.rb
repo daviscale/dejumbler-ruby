@@ -8,7 +8,7 @@ class Word < ApplicationRecord
 
   def self.dejumble(jumbled_word)
     if jumbled_word
-      possible_words = jumbled_word.chars.permutation.each.to_a.map(&:join)
+      possible_words = jumbled_word.downcase.chars.permutation.each.to_a.map(&:join)
       if possible_words.any?
         Word.select(:word).where(word: possible_words).distinct
       else
