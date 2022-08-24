@@ -2,10 +2,6 @@ class Word < ApplicationRecord
   validates :word, length: { minimum: 4, maximum: 6 }
   validate :word_is_only_az
 
-  after_initialize do
-    self.word = word.downcase
-  end
-
   def self.dejumble(jumbled_word)
     if jumbled_word
       possible_words = jumbled_word.downcase.chars.permutation.each.to_a.map(&:join)
@@ -22,6 +18,8 @@ class Word < ApplicationRecord
   private
 
   def word_is_only_az
-    word =~ /[a-z]+/
+    if word.match(/^([a-z]){4,6}$/).nil?
+      errors.add(:word, "can only be a-z lowercase")
+    end
   end
 end
