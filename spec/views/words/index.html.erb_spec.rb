@@ -11,14 +11,14 @@ RSpec.describe "words/index.html.erb", type: :view do
   end
 
   context "after dejumbling a word" do
-     it "renders words and displays a form" do
+    it "renders words and displays a form" do
       assign(:words, ["hello", "world"].map{ |w| Word.new(word: w) })
       render
 
       expect(rendered).to match /hello/
       expect(rendered).to match /world/
       expect_form(rendered)
-     end
+    end
   end
 
   def expect_form(rendered)
