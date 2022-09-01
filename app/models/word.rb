@@ -1,6 +1,7 @@
 class Word < ApplicationRecord
+  validates :word, presence: true
   validates :word, length: { minimum: 4, maximum: 6 }
-  validate :word_is_only_az
+  validate :word_is_only_az, if: -> { word.present? && word.length >= 4 && word.length <= 6 }
 
   def self.dejumble(jumbled_word)
     if jumbled_word
