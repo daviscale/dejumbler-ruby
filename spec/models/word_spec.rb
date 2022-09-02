@@ -35,4 +35,18 @@ RSpec.describe Word, type: :model do
       expect(Word.create(word: "abcdf").errors.empty?).to eq(true)
     end
   end
+
+  describe "#dejumble" do
+    it "dejumbles 'oodf'" do
+      expect(Word.dejumble("oodf").map(&:word)).to contain_exactly("food")
+    end
+
+    it "dejumbles 'lrwod'" do
+      expect(Word.dejumble("lrwod").map(&:word)).to contain_exactly("world")
+    end
+
+    it "dejumbles 'letede'" do
+      expect(Word.dejumble("letede").map(&:word)).to contain_exactly("delete", "teedle")
+    end
+  end
 end
