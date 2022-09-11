@@ -1,6 +1,8 @@
+require "open-uri"
+
 Word.destroy_all
 
-words = File.open("tmp/american-english-insane").readlines.map(&:chomp)
+words = URI.open("https://storage.googleapis.com/dejumbler/american-english-insane").readlines.map(&:chomp)
 
 puts "Found #{words.length} words in file"
 
